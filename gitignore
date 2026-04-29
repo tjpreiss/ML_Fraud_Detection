@@ -1,0 +1,24 @@
+# Secrets — never commit
+.streamlit/secrets.toml
+
+# Data files — too large for GitHub
+data/train_transaction.csv
+data/train_identity.csv
+data/test_transaction.csv
+data/test_identity.csv
+data/df_processed.csv
+
+# Model binaries
+model/fraud_pipeline.joblib
+model/shap_explainer.joblib
+model/model.tar.gz
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+.env
+*.egg-info/
+dist/
+build/
