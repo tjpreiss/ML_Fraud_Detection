@@ -7,4 +7,3 @@ xgboost>=1.7.0
 shap>=0.44.0
 joblib>=1.3.0
 boto3==1.26.164
-sagemaker==2.117.0
