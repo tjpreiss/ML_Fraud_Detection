@@ -1,1 +1,2 @@
-xgboost
+xgboost==1.7.6
+pandas==1.5.3
