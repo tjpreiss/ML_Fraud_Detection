@@ -1,17 +1,5 @@
-import os
-import json
-import warnings
-import numpy as np
-import pandas as pd
-import streamlit as st
-import matplotlib.pyplot as plt
-import joblib
 import boto3
-import sagemaker
 import shap
-from sagemaker.predictor import Predictor
-from sagemaker.serializers import JSONSerializer
-from sagemaker.deserializers import JSONDeserializer
 
 warnings.filterwarnings("ignore")
 
@@ -77,9 +65,7 @@ def get_aws_session(key_id, secret, token):
         region_name='us-east-1'
     )
 
-@st.cache_resource
-def get_sagemaker_session(_boto_session):
-    return sagemaker.Session(boto_session=_boto_session)
+
 
 # ─── Load SHAP explainer from S3 ──────────────────────────────────────────────
 @st.cache_resource
@@ -148,7 +134,7 @@ except Exception:
     st.stop()
 
 boto_session = get_aws_session(aws_id, aws_secret, aws_token)
-sm_session   = get_sagemaker_session(boto_session)
+
 
 # ─── Input Form ───────────────────────────────────────────────────────────────
 st.subheader("Transaction Inputs")
