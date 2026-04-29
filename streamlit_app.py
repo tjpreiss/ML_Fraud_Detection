@@ -167,8 +167,7 @@ if submitted:
     input_dict = {**DEFAULTS, **user_vals}
 
     with st.spinner("Calling SageMaker endpoint..."):
-        pred, proba, err = call_endpoint(input_dict, sm_session)
-
+       pred, proba, err = call_endpoint(input_dict, boto_session)
     if err:
         st.error(f"Endpoint error: {err}")
         st.stop()
