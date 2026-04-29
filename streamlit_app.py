@@ -91,16 +91,16 @@ def load_shap_explainer(_boto_session, bucket):
     return joblib.load(local)
 
 # ─── Prediction via SageMaker endpoint ───────────────────────────────────────
-def call_endpoint(input_dict, sm_session):
-    predictor = Predictor(
-        endpoint_name=ENDPOINT_NAME,
-        sagemaker_session=sm_session,
-        serializer=JSONSerializer(),
-        deserializer=JSONDeserializer()
-    )
+def call_endpoint(input_dict, boto_session):
+    client  = boto_session.client('sagemaker-runtime', region_name='us-east-1')
     payload = json.dumps({"inputs": input_dict})
     try:
-        result = predictor.predict(payload, initial_args={"ContentType": "application/json"})
+        response = client.invoke_endpoint(
+            EndpointName=ENDPOINT_NAME,
+            ContentType='application/json',
+            Body=payload
+        )
+        result = json.loads(response['Body'].read().decode())
         pred  = result['predictions'][0]
         proba = result['probabilities'][0]
         return pred, proba, None
