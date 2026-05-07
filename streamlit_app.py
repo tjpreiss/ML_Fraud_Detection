@@ -19,7 +19,7 @@ st.set_page_config(
 )
 
 # ─── Constants ────────────────────────────────────────────────────────────────
-ENDPOINT_NAME = "fraud-detection-v3"
+ENDPOINT_NAME = "fraud-detection-vf"
 BUCKET        = "thomas-preiss-s3-bucket"
 
 FEATURE_COLS = [
